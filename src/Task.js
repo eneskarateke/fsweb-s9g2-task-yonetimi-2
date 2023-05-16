@@ -1,5 +1,7 @@
 import React from "react";
-import { parseISO, differenceInHours, formatDistanceToNow } from "date-fns";
+import { parseISO, differenceInHours } from "date-fns";
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import { tr } from "date-fns/locale";
 
 const Task = ({ taskObj, onComplete }) => {
   const deadline = parseISO(taskObj.deadline);
@@ -18,7 +20,13 @@ const Task = ({ taskObj, onComplete }) => {
 
   const formattedDistance = formatDistanceToNow(deadline, {
     addSuffix: true,
+    locale: tr,
   });
+
+  // const result = formatDistanceToNow(
+  //   new Date(2016, 7, 1),
+  // //   {locale: trLocale}
+  // )
 
   return (
     <div className="task">
