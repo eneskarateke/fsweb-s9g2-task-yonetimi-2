@@ -1,14 +1,12 @@
 import React from "react";
-import { parseISO, differenceInHours, isAfter } from "date-fns";
+import { parseISO, differenceInHours, formatDistanceToNow } from "date-fns";
 
 const Task = ({ taskObj, onComplete }) => {
   const deadline = parseISO(taskObj.deadline);
   const currentDate = new Date();
-  const deadlinePassed = isAfter(currentDate, deadline);
 
   const hoursRemaining = differenceInHours(deadline, currentDate);
   const daysRemaining = Math.floor(hoursRemaining / 24);
-  const remainingHours = hoursRemaining % 24;
 
   let spanClassName;
 
@@ -18,22 +16,15 @@ const Task = ({ taskObj, onComplete }) => {
     spanClassName = "blueBackground";
   }
 
-  let deadlineText;
-  if (deadlinePassed && daysRemaining === 0) {
-    deadlineText = `yaklaşık ${Math.abs(remainingHours)} saat önceydi..`;
-  } else if (deadlinePassed && daysRemaining !== 0) {
-    deadlineText = `${Math.abs(daysRemaining)} gün önceydi..`;
-  } else if (!deadlinePassed && daysRemaining !== 0) {
-    deadlineText = `${Math.abs(daysRemaining)} gün sonra..`;
-  } else if (!deadlinePassed && daysRemaining === 0) {
-    deadlineText = `yaklaşık ${Math.abs(remainingHours)} saat sonra..`;
-  }
+  const formattedDistance = formatDistanceToNow(deadline, {
+    addSuffix: true,
+  });
 
   return (
     <div className="task">
       <h3>{taskObj.title}</h3>
       <div className="deadline">
-        son teslim: <span className={spanClassName}>{deadlineText}</span>
+        son teslim: <span className={spanClassName}>{formattedDistance}</span>
       </div>
       <p>{taskObj.description}</p>
       <div>
