@@ -14,13 +14,6 @@
   overflow: auto;
 }
 
-.redBackground{
-  background: #ffd9d4;
-}
-.blueBackground{
-  background: #7dabd6;
-}
-
 .column {
   flex: 1;
   min-width: 240px;

@@ -1,6 +1,5 @@
 import React from "react";
-import { parseISO, differenceInHours } from "date-fns";
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import { parseISO, differenceInHours, formatDistanceToNow } from "date-fns";
 import { tr } from "date-fns/locale";
 
 const Task = ({ taskObj, onComplete }) => {
@@ -13,20 +12,15 @@ const Task = ({ taskObj, onComplete }) => {
   let spanClassName;
 
   if (daysRemaining < 3) {
-    spanClassName = "redBackground";
+    spanClassName = "bg-[#ffd9d4]";
   } else {
-    spanClassName = "blueBackground";
+    spanClassName = "bg-[#d2d5fd]";
   }
 
   const formattedDistance = formatDistanceToNow(deadline, {
     addSuffix: true,
     locale: tr,
   });
-
-  // const result = formatDistanceToNow(
-  //   new Date(2016, 7, 1),
-  // //   {locale: trLocale}
-  // )
 
   return (
     <div className="task">
