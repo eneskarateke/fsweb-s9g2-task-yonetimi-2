@@ -162,3 +162,30 @@
   box-shadow: none;
 }
 /* FORM */
+.btnForm{
+  display: none;
+}
+
+
+@media  (max-width:800px) {
+.app{
+  flex-direction: column;
+}
+
+.btnForm{
+  display:flex;
+  align-content: center;
+  margin: 1rem 0;
+
+}
+
+
+.formColumnDisplay{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+}
